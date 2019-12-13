@@ -1,0 +1,38 @@
+.header{position:fixed;top:0;left:0;z-index:9;display: table;width: 100%;height: 40px;background-color: #fff;line-height: 40px;border-bottom: 1px solid #ddd;}
+.head-left{display: table-cell;width: 250px;font-size: 20px;text-align: center;}
+.head-right{display: table-cell;margin-left: 250px;position: relative; padding-top: 15px;padding-right: 30px;}
+.user-status{width:32px;position: absolute; right: 40px;}
+.content{margin-top:40px; display: table;width:100%;}
+.content-nav{position: fixed;top:40px;left:0;z-index:9; display: table-cell;width: 180px;background-color:#324157;height: 100%;min-width: 180px; max-width: 180px;overflow-y: auto;}
+.content-content{/*display: table-cell;*/margin-left: 180px;margin-right: auto;padding-left: 15px;padding-right: 15px;background-color: #fff;}
+
+.content-c-breadcrumb{padding-top: 20px;padding-bottom: 15px;border-bottom: 1px solid #eee;}
+.content-seach{background-color: #F0F0F0;padding: 25px 15px;}
+.content-util{padding: 15px 0;border-bottom: 1px solid #eee;}
+/*分页控件*/
+.pager-wrap {
+  padding: 20px 0;
+}
+.content-pages{padding: 15px 0;text-align: center;}
+.table-m20{margin: 20px 0;}
+.text-center{text-align: center;}
+.mb20{margin-bottom: 20px;}
+/* 新建页面 */
+.btns {
+  text-align: right;
+  margin: 20px 0;
+}
+.fill-form {
+  width: 90%;
+}
+.author-time{
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.record-content h3{
+  word-break: keep-all;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
