@@ -1,0 +1,54 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans 
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+			 http://www.springframework.org/schema/security
+			 http://www.springframework.org/schema/security/spring-security.xsd
+			">
+			
+			
+    <!--  Spring-Security 的配置 --> 
+		<security:http auto-config="true" use-expressions="true" >
+		    <security:csrf disabled="true"/>
+			<security:intercept-url pattern="/login" access="permitAll"/> 
+	        <security:intercept-url pattern="/html" access="hasRole('ROLE_ADMIN')"/>  
+	        <security:intercept-url pattern="/html" access="hasRole('ROLE_USER')"/>  
+	         
+	        <security:access-denied-handler error-page="/denied"/>
+	        
+	        <security:form-login  
+	        		username-parameter="userName"
+	        		password-parameter="password"
+	                login-page="/auth/login"   
+	                authentication-failure-url="/auth/login"
+	                login-processing-url="login"
+	                authentication-success-handler-ref="authenticationSuccessHandler" />   
+	              
+	        <security:logout   
+	                invalidate-session="true"   
+	                logout-success-url="/login"   
+	                logout-url="/logout"/>  
+		</security:http>
+		
+    
+	 <!-- 指定一个自定义的authentication-manager :customUserDetailsService -->  
+    <security:authentication-manager>  
+            <security:authentication-provider user-service-ref="customUserDetailsService">  
+                    <security:password-encoder ref="passwordEncoder"/>  
+            </security:authentication-provider>  
+    </security:authentication-manager> 
+    
+     <!-- 对密码进行MD5编码 -->  
+    <bean class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" id="passwordEncoder"/>  
+  
+    <!--   
+        通过 customUserDetailsService,Spring会自动的用户的访问级别.  
+        也可以理解成:以后我们和数据库操作就是通过customUserDetailsService来进行关联.  
+     -->  
+    <bean id="customUserDetailsService" class="com.security.service.CustomUserDetailsService"/>  
+    <bean id="authenticationSuccessHandler" class="com.security.service.AuthenticationSuccessHandler"/>  
+	 
+	
+</beans>

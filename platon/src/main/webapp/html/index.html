@@ -1,0 +1,220 @@
+<%@page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+<style type="text/css">
+body {
+    color: #333;
+    background: #fff;
+    padding: 6px 0 0;
+    margin: 0;
+    position: relative;
+    min-width: 900px;
+}
+body, th, td, .p1, .p2 {
+    font-family: arial;
+}
+#content_left {
+    width: 540px;
+    /*padding-left: 121px; */
+    padding-top: 5px;
+}
+.btn {
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 16px;
+    width: 112px;
+    height: 36px;
+    line-height: 36px;
+    padding: 0;
+}
+.btn-cancel, .btn-conserve {
+    border: 1px solid #488ffe;
+    width: 112px;
+    height: 36px;
+    line-height: 36px;
+    border-radius: 4px;
+    padding: 0;
+}
+.btn-conserve {
+    background-color: #488ffe;
+    color: #fff;
+}
+
+/* 公共样式 */
+* { padding: 0; margin: 0; list-style: none; font-size: 14px; }
+.hide { display: none; }
+input { outline: none; }
+
+/* 模拟下拉框 */
+.select { position: relative; margin: 50px 0 0 100px; }
+.select .input_in input { width: 188px;  line-height: 20px; padding: 10px 0 10px 10px; border: 1px solid #d6d6d6; cursor: pointer; }
+.select .city { position: absolute; top: 40px; left: 0; }
+.select .city ul { width: 198px; border: 1px solid #d6d6d6; border-top: none; }
+.select .city ul li { padding-left: 10px; width: 188px; height: 40px; line-height: 40px; cursor: pointer; }
+
+.result {
+    width: 33.7em;
+    table-layout: fixed;
+}
+.c-container {
+    width: 538px;
+    font-size: 13px;
+    line-height: 1.54;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+p, form, ol, ul, li, dl, dt, dd, h3 {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.t {
+    font-weight: 400;
+    font-size: medium;
+    margin-bottom: 1px;
+}
+.c-container .t, .c-default .t {
+    line-height: 1.54;
+}
+.c-abstract {
+    font-size: 13px;
+}
+</style>
+</head>
+<body>
+<div class="select">
+     <div class="input_in">
+         <input id="inputKeyWord" type="text" value="" />
+         <button data-v-6bfb1628="" class="btn btn-conserve" id="btn" onclick="searchKeyWord()">确认</button>
+     </div>
+     <div class="city hide">
+         <ul id="ul">
+             
+         </ul>
+     </div>
+	
+	<div id="content_left" style="border:1 px solid black">
+			<!-- <div class="" id="5" srcid="1599" tpl="se_com_default" data-click="{&quot;rsv_bdr&quot;:&quot;0&quot;,&quot;rsv_cd&quot;:&quot;vLevel:3&quot;,&quot;p5&quot;:5}"><h3 class="t"><a data-click="{
+				'F':'778317EA',
+				'F1':'9D73F1E4',
+				'F2':'4CA6DD6B',
+				'F3':'54E5363F',
+				'T':'1522746201',
+							'y':'1DBEFB99'
+				 
+										}" href="http://www.baidu.com/link?url=lp9jcmBnxyKogcO9FsbXFZleA7FcGtYC6jg7M1IhUc7Vbl80h3c8GUnudXI49XIw" target="_blank">CCTV-<em>11</em> 戏曲频道高清直播</a></h3><div class="c-abstract">CCTV节目官网提供CCTV在线直播及中央电视台节目表预告等服务,中央电视台是中国重要的新闻舆论机构,现已开办众多频道及节目,拥有国内一流的播音员和主持人队伍。</div><div class="f13"><a target="_blank" href="http://www.baidu.com/link?url=lp9jcmBnxyKogcO9FsbXFZleA7FcGtYC6jg7M1IhUc7Vbl80h3c8GUnudXI49XIw" class="c-showurl" style="text-decoration:none;">tv.cctv.com/live/c...<b>11</b>/&nbsp;</a><div class="c-tools" id="tools_17007933874374042198_5" data-tools="{&quot;title&quot;:&quot;CCTV-11 戏曲频道高清直播&quot;,&quot;url&quot;:&quot;http://www.baidu.com/link?url=lp9jcmBnxyKogcO9FsbXFZleA7FcGtYC6jg7M1IhUc7Vbl80h3c8GUnudXI49XIw&quot;}"><a class="c-tip-icon"><i class="c-icon c-icon-triangle-down-g"></i></a></div><span class="c-icons-outer"><span class="c-icons-inner"><span class="c-vline"></span><span class="c-trust-as vstar " data_key="6667582515712283354" hint-data="{&quot;label&quot;:&quot;中央电视台&quot;,&quot;url&quot;:&quot;https://www.baidu.com/s?wd=%E4%B8%AD%E5%A4%AE%E7%94%B5%E8%A7%86%E5%8F%B0@v&amp;vmp_ec=24ecae27b22f87affb6d5Y2XtLbaYusj3b6Jad0880691Nm5RH1dbd82d6X22b194534426e&amp;vmp_ectm=1510307932&amp;from=vs&quot;,&quot;hint&quot;:[{&quot;txt&quot;:&quot;[ecard -1]&quot;,&quot;vlevel&quot;:&quot;3&quot;}]}" hint-type="vstar" render="render"><a href="https://www.baidu.com/s?wd=%E4%B8%AD%E5%A4%AE%E7%94%B5%E8%A7%86%E5%8F%B0@v&amp;vmp_ec=24ecae27b22f87affb6d5Y2XtLbaYusj3b6Jad0880691Nm5RH1dbd82d6X22b194534426e&amp;vmp_ectm=1510307932&amp;from=vs&amp;product=v&amp;rsv_dl=0_left_v_3" class="c-icon c-icon-v c-icon-v3" target="_blank" data-click="{'title':'vstar','rsv_vlevel':'3'}"></a></span></span></span>&nbsp;-&nbsp;<a data-click="{'rsv_snapshot':'1'}" href="http://cache.baiducontent.com/c?m=9d78d513d9c042bb1fadca71575091240e55f37e219194027fa3c219d5204c413037bee43a7c4b4084d82d3647eb4a5ff7&amp;p=9d79c54addc618f611b2c7710f54&amp;newp=9f769a47969d18ff57e69139115192695d0fc20e3fd7d501298ffe0cc4241a1a1a3aecbf20231a05d0ce79630bad4a5be0f43778310034f1f689df08d2ecce7e6fd67e&amp;user=baidu&amp;fm=sc&amp;query=11&amp;qid=a1bb1aaf00099b26&amp;p1=5" target="_blank" class="m">百度快照</a></div></div> -->
+	</div>
+ </div>
+ <div >
+ 
+ </div>
+</body>
+<script src="../static/js/jquery-1.11.1.min.js" ></script>
+<script type="text/javascript">
+var keyId;
+$(function(){
+	
+	$('#inputKeyWord').bind('input propertychange', function() {  
+		searchKey($("#inputKeyWord").val());
+	});  
+
+	//模拟下拉框
+    $('.select input').on('click',function(){
+        if($('.select .city').is('.hide')){
+            $('.select .city').removeClass('hide');
+        }else{
+            $('.select .city').addClass('hide');
+        }
+    })
+	   
+
+	    
+})
+	
+function searchKey(keyword){
+	$("#ul").html("");
+	$.ajax({
+	    url:'/jie_server/test/findKey.do',
+	    type:'GET', //GET
+	    async:true,    //或false,是否异步
+	   /*  data:{key:"123",'insMerchRate':args} */
+	 	/* data:$("#forms").serialize(), */
+	 	data:{keyword:keyword},
+	    timeout:5000,    //超时时间
+	    traditional:true,
+	    dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+	    success:function(data,textStatus){
+	    	if(textStatus=200 && data.code==0){
+	    		if(data.data.length>0){
+		    		$(data.data).each(function(i,n){
+		    			$("#ul").append("<li key="+n.id+" style=\"background-color: rgb(255, 255, 255); font-size: 14px\">"+n.keyword+"</li>");
+		    		});
+		    		
+	    		}
+	    	}
+	    	init();
+	    		
+	    },
+	    error:function(textStatus){
+	    }
+	})
+}	
+
+function searchKeyWord(){
+	$("#content_left").html("");
+	$.ajax({
+	    url:'/jie_server/test/findKeyWord.do',
+	    type:'POST', //GET
+	    async:true,    //或false,是否异步
+	   /*  data:{key:"123",'insMerchRate':args} */
+	 	/* data:$("#forms").serialize(), */
+	 	data:{keyId:keyId},
+	    timeout:5000,    //超时时间
+	    traditional:true,
+	    dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+	    success:function(data,textStatus){
+	    	
+	    	if(textStatus=200 && data.code==0){
+	    		if(data.data.length>0){
+		    		$(data.data).each(function(i,n){
+		    			var div="<div class=\"result c-container\" "+
+		    				"<h3 class=\"t\">"+
+		    				"<a href="+n.url+" tar	get=\"_blank\">"+n.title+"</a>"+
+		    				"</h3>"+
+		    				"<div class=\"c-abstract\">"+
+		    					n.remark
+		    				"</div>"+
+		    				"</div>"
+		    			$("#content_left").append(div);
+		    		});
+	    		}
+	    	}
+	    		
+	    },
+	    error:function(textStatus){
+	    }
+	})
+}	
+
+
+function init(){
+	 $('.select ul li').on('click',function(){
+	        $('.select input').val($(this).html());
+	        keyId=$(this).attr("key");
+	        $('.select .city').addClass('hide');
+	        $('.select input').css('border-bottom','1px solid $d6d6d6');
+	    })
+	    
+	$('.select ul li').hover(
+	        function(){
+	            $(this).css({'backgroundColor':'#fd9','font-size':'18px'});
+	        },function(){
+	            $(this).css({'backgroundColor':'#fff','font-size':'14px'});
+	        }
+	    )
+}
+
+</script>
+</html>
